@@ -1,0 +1,50 @@
+*{
+    font-size:20px ;
+}
+
+@font-face {
+    font-family: titulo;
+    src: url(../font/Bright\ DEMO.otf);
+}
+#btnvolver{
+    text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  color: #026842;
+  border: 1px solid #026842;
+  border-radius: 25px;
+  transition: all 400ms ease;
+  
+}
+#btnvolver:hover{
+    background-color: #026842;
+    color: #fff;
+}
+#titulo{
+    color: #026842;
+    font-family: titulo;
+    font-size: 70px;
+}
+#aquiestaelboton{
+    text-align: center;
+}
+body{
+    
+    background-color: #fffcfa;
+}
+input {
+    padding: 8px;
+    border: 1px solid #026842;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+}
+label{
+    font-family: titulo;
+    color: #026842;
+    font-size: 30px;
+}
+#tabledata th{
+    color: #026842;
+}

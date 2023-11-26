@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/style-vender.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Stock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="titulo">Gestion de Stock</h1>
+</div>
+
+<div class="container">
+    <div class="container mb-5">
+        <div class="row">
+            <form id="restarStockForm">
+                <div class="mb-3">
+                    <label class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="inputMarcaRestar" placeholder="Ingrese la marca del producto">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="inputModeloRestar" placeholder="Ingrese el modelo del producto">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Talle</label>
+                    <input type="text" class="form-control" id="inputTalleRestar" placeholder="Ingrese el talle del producto">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad a restar</label>
+                    <input type="number" class="form-control" id="inputCantidadRestar" placeholder="Ingrese la cantidad a restar">
+                </div>
+                    <div id="btn">
+                        <button type="button" class="btn btn-danger" id="btnRestar" onclick="restarStock()">Restar al Stock</button>
+                    </div>
+                
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 class="titulo">Stock Actual</h2>
+    <table class="table table-border" id="tableStock">
+        <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Talle</th>
+            <th>Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<div id="volver">
+    <a href="home.html">volver al inicio</a>
+</div>
+
+
+<script src="../js/gestionStock.js"></script>
+</body>
+</html>
+
+
+
