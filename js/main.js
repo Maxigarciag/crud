@@ -1,17 +1,3 @@
-function login() {
-    const usuarioCorrecto = "admin";
-    const contrasenaCorrecta = "1234";
-
-    var usuario = document.getElementById("im").value;
-    var contrasena = document.getElementById("ic").value;
-
-    if (usuario == usuarioCorrecto && contrasena == contrasenaCorrecta) {
-        window.location.href='home.html';
-        
-    } else {
-        mostrarError("Usuario o contraseña incorrectos");
-    }
-}
 
 function mostrarError(mensaje) {
     alert(mensaje);
@@ -21,7 +7,7 @@ function validateform() {
     let marca = document.getElementById('inputmarca').value;
     let modelo = document.getElementById('inputmodelo').value;
     let talle = document.getElementById('inputtalle').value;
-   
+    let stock = document.getElementById('inputCantidadCargar').value;
 
     if (marca.trim() === "") {
         alert("Ingrese la marca");
@@ -35,9 +21,15 @@ function validateform() {
         alert("Ingrese el talle");
         return false;
     }
+    if (isNaN(stock) || stock.trim() === "" || stock < 0) {
+        alert("Ingrese un valor numérico válido y positivo para el stock");
+        return false;
+    }
 
     return true;
 }
+
+
 
 function read() {
     let listsneakers;
@@ -53,14 +45,20 @@ function read() {
         html += "<td>" + element.marca + "</td>";
         html += "<td>" + element.modelo + "</td>";
         html += "<td>" + element.talle + "</td>";
-        html += "<td>" + (element.stock || 0) + "</td>"; 
         
+        if (element.stock == 0) {
+            html += "<td><span style='color:red'>Sin stock</span></td>";
+        } else {
+            html += "<td>" + element.stock + "</td>";
+        }
+
         html += '<td><button onclick="deletedata(' + index + ')" class="btn btn-danger" id="btneliminar">Eliminar Dato</button><button id="btnedit" onclick="editdata(' + index + ')" class="btn btn-warning">Editar Dato</button></td>';
         html += "</tr>";
     });
 
     document.querySelector('#tabledata tbody').innerHTML = html;
 }
+
 
 document.addEventListener('DOMContentLoaded', read);
 
@@ -69,7 +67,7 @@ function adddata() {
         let marca = document.getElementById('inputmarca').value;
         let modelo = document.getElementById('inputmodelo').value;
         let talle = document.getElementById('inputtalle').value;
-        let stock=document.getElementById('inputCantidadCargar').value;
+        let stock = document.getElementById('inputCantidadCargar').value;
 
         var listsneakers;
         if (localStorage.getItem('listsneakers') == null) {
@@ -82,18 +80,28 @@ function adddata() {
             marca: marca,
             modelo: modelo,
             talle: talle,
-            stock:stock,
+            stock: stock,
         });
 
         localStorage.setItem('listsneakers', JSON.stringify(listsneakers));
         read();
 
+        // Si el stock es 0, agregar el estilo rojo al elemento en la tabla
+        if (stock == 0) {
+            let tableRows = document.querySelectorAll('#tabledata tbody tr');
+            let lastRow = tableRows[tableRows.length - 1];
+            let stockCell = lastRow.querySelector('td:nth-child(4)');
+            stockCell.innerHTML = "<span style='color:red'>Sin stock</span>";
+        }
+
+        // Limpiar los campos de entrada después de agregar el dato
         document.getElementById('inputmarca').value = "";
         document.getElementById('inputmodelo').value = "";
         document.getElementById('inputtalle').value = "";
         document.getElementById('inputCantidadCargar').value = "";
     }
 }
+
 
 function deletedata(index){
     let listsneakers;

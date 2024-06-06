@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await mostrarDatos();
 });
 
-async function mostrarDatos() {
+function mostrarDatos() {
     let listsneakers;
     if (localStorage.getItem('listsneakers') == null) {
         listsneakers = [];
@@ -16,12 +16,21 @@ async function mostrarDatos() {
         html += "<td>" + element.marca + "</td>";
         html += "<td>" + element.modelo + "</td>";
         html += "<td>" + element.talle + "</td>";
-        html += "<td>" + element.stock + "</td>";
+        if (element.stock == 0) {
+            html += "<td style='color:red;'>Sin stock</td>";
+        } else {
+            html += "<td>" + element.stock + "</td>";
+        }
         html += "</tr>";
     });
 
     document.querySelector('#tableStock tbody').innerHTML = html;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    mostrarDatos();
+});
+
 
 async function restarStock() {
     let marcaRestar = document.getElementById('inputMarcaRestar').value.trim();

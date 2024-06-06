@@ -17,32 +17,14 @@ function mostrarDatos() {
         html += "<td>" + element.marca + "</td>";
         html += "<td>" + element.modelo + "</td>";
         html += "<td>" + (element.talle || '') + "</td>";
-        html += "<td>" + (element.stock || 0) + "</td>";
-        html += "</tr>";
-    });
-
-   
-    document.querySelector('#tabledata tbody').innerHTML = html;
-}
-document.addEventListener('DOMContentLoaded', function () {
-    mostrarDatos();
-});
-
-function mostrarDatos() {
-    let listsneakers;
-    if (localStorage.getItem('listsneakers') == null) {
-        listsneakers = [];
-    } else {
-        listsneakers = JSON.parse(localStorage.getItem('listsneakers'));
-    }
-
-    var html = "";
-    listsneakers.forEach(function (element) {
-        html += "<tr>";
-        html += "<td>" + element.marca + "</td>";
-        html += "<td>" + element.modelo + "</td>";
-        html += "<td>" + (element.talle || '') + "</td>";
-        html += "<td>" + (element.stock || 0) + "</td>";
+        
+        // Validar si el stock es 0 o no para mostrar un mensaje adicional
+        if (element.stock == 0) {
+            html += "<td><span style='color:red'>Sin stock</span></td>";
+        } else {
+            html += "<td>" + element.stock + "</td>";
+        }
+        
         html += "</tr>";
     });
 
