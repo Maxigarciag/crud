@@ -17,14 +17,12 @@ function mostrarDatos() {
         html += "<td>" + element.marca + "</td>";
         html += "<td>" + element.modelo + "</td>";
         html += "<td>" + (element.talle || '') + "</td>";
-        
-        // Validar si el stock es 0 o no para mostrar un mensaje adicional
+        html += "<td>" + element.precio +" $"+ "</td>";
         if (element.stock == 0) {
             html += "<td><span style='color:red'>Sin stock</span></td>";
         } else {
             html += "<td>" + element.stock + "</td>";
-        }
-        
+        }       
         html += "</tr>";
     });
 

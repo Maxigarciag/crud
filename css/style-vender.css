@@ -1,52 +1,36 @@
 @font-face {
-    font-family: maxi;
-    src: url(../font/Bright\ DEMO.otf);
+  font-family: maxi;
+  src: url(../font/Bright\ DEMO.otf);
 }
-
-*{
-    font-size: 20px;
-    
+* {
+  font-size: 20px;
 }
-body{
-    background-color: #fffcfa;
-    color: #026842;
+body {
+  background-color: #fffcfa;
+  color: #026842;
 }
-.titulo{
-   
-    color: #026842;
-    font-family: maxi;
-    font-size: 80px;
-    
+.titulo {
+  color: #026842;
+  font-family: maxi;
+  font-size: 80px;
 }
-#btn{
-    text-align: center;
+#btn {
+  text-align: center;
 }
-#btnRestar{
-    color: #026842;
-    background-color: #fffcfa;
-    border: 1px solid #026842;
-    border-radius: 25px;
-    
+#volver {
+  text-align: center;
 }
-#btnRestar:hover{
-    background-color: #026842;
-   color: #fff;
+#volver a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  color: #026842;
+  border: 1px solid #026842;
+  border-radius: 25px;
+  transition: all 400ms ease;
 }
-#volver{
-    text-align: center;
-}
-#volver a{
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px;
-    margin-top: 10px;
-    color: #026842;
-    border: 1px solid #026842;
-    border-radius: 25px;
-    transition: all 400ms ease;
-    
-}
-#volver a:hover{
-    background-color: #026842;
-    color: #fff;
+#volver a:hover {
+  background-color: #026842;
+  color: #fff;
 }
