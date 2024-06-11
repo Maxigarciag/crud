@@ -7,6 +7,7 @@
   font-family: MAXI;
   src: url(../font/Bright\ DEMO.otf);
 }
+
 body {
   color: #026842;
   display: flex;
@@ -26,12 +27,12 @@ h1 {
   font-size: 80px;
   font-family: MAXI;
 }
+
 h3{
   font-family: MAXI;
   font-size: 27px;
   
 }
-
 
 .container {
   width: 100%;
@@ -50,6 +51,7 @@ h3{
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   cursor: default;
   transition: all 400ms ease;
+
 }
 
 .card:hover {

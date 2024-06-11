@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Stock</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 <body>
@@ -32,6 +37,29 @@
                         <label class="form-label">Cantidad</label>
                         <input type="number" class="form-control" id="inputCantidadRestar" placeholder="Ingrese la cantidad a vender" />
                     </div>
+                    <label for="comboBox">Selecciona un método de pago:</label>
+                    <select id="comboBox" class="form-select" aria-label="Default select example" onchange="onComboBoxChange()">
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="1">Contado</option>
+                        <option value="2">Transferencia</option>
+                    </select>
+
+                    <div id="additionalForm" class="hidden">
+                        <h3 class="titulo">Formulario de Datos del Comprador</h3>
+                        <div class="mb-3">
+                            <label for="buyerName" class="form-label">Nombre del Comprador:</label>
+                            <input type="text" class="form-control" id="buyerName" name="buyerName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="buyerEmail" class="form-label">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="buyerEmail" name="buyerEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="buyerPhone" class="form-label">Teléfono:</label>
+                            <input type="tel" class="form-control" id="buyerPhone" name="buyerPhone">
+                        </div>
+                    </div>
+
                     <div id="btn">
                         <button type="button" class="btnedit" id="btnRestar" onclick="restarStock()">Realizar venta</button>
                         <button type="button" class="btnedit" id="btnCancelar" onclick="ocultarFormulario()">Cancelar</button>
@@ -57,6 +85,7 @@
             <tbody></tbody>
         </table>
     </div>
+   
     <div id="volver">
         <a href="home.html">volver al inicio</a>
     </div>

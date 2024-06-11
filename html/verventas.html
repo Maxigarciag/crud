@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style-verventas.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Comprobante de Venta</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Comprobante de Venta</h1>
+
+        <!-- Contenedor para las tarjetas de comprobante -->
+        <div id="comprobantesContainer" class="row"></div>
+    </div>
+
+    <div id="aquiestaelboton">
+        <a href="home.html" id="btnvolver">Volver al inicio</a>
+    </div>
+
+    <!-- Plantilla para la tarjeta de comprobante (dentro de un <template>) -->
+    <template id="plantillaComprobante">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Nombre del Producto</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Talle: Talle del Producto</h6>
+                    <p class="card-text">Cantidad: Cantidad de Productos</p>
+                    <p class="card-text">Método de Pago: Método de Pago</p>
+                    <p class="card-text">Dirección de Facturación: Dirección de Facturación</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Datos del Comprador:</h6>
+                    <p class="card-text">Nombre: Nombre del Comprador</p>
+                    <p class="card-text">Correo Electrónico: Correo Electrónico del Comprador</p>
+                    <p class="card-text">Teléfono: Teléfono del Comprador</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="../js/verventas.js"></script>
+</body>
+</html>
