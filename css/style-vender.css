@@ -34,3 +34,15 @@ body {
   background-color: #026842;
   color: #fff;
 }
+.btnedit{
+  color: #026842;
+  background-color: #fffcfa;
+  border: 1px solid #026842;
+  border-radius: 25px;
+  padding: 2%;
+  
+}
+.btnedit:hover{
+  background-color: #026842;
+  color: #fff;
+}
