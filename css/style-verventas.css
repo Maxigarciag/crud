@@ -46,3 +46,21 @@ label{
     color: #026842;
     font-size: 30px;
 }
+.card {
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}

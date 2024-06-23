@@ -2,14 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarDatos();
 });
 
-
 function mostrarDatos() {
-    let listsneakers;
-    if (localStorage.getItem("listsneakers") == null) {
-        listsneakers = [];
-    } else {
-        listsneakers = JSON.parse(localStorage.getItem("listsneakers"));
-    }
+    let listsneakers = JSON.parse(localStorage.getItem("listsneakers")) || [];
 
     let html = "";
     listsneakers.forEach(function (element, index) {
@@ -18,11 +12,7 @@ function mostrarDatos() {
         html += "<td>" + element.modelo + "</td>";
         html += "<td>" + element.talle + "</td>";
         html += "<td>" + element.precio + " $" + "</td>";
-        if (element.stock == 0) {
-            html += "<td style='color:red;'>Sin stock</td>";
-        } else {
-            html += "<td>" + element.stock + " " + "</td>";
-        }
+        html += "<td style='color:" + (element.stock == 0 ? 'red' : 'black') + ";'>" + (element.stock == 0 ? 'Sin stock' : element.stock) + "</td>";
         html += `<td><button class="btnedit" onclick="mostrarFormularioVender(${index})">Vender</button></td>`;
         html += "</tr>";
     });
@@ -51,6 +41,7 @@ function ocultarFormulario() {
     document.getElementById("venderFormContainer").hidden = true;
     document.getElementById("additionalForm").classList.add("hidden");
 }
+
 function onComboBoxChange() {
     var comboBox = document.getElementById("comboBox");
     var additionalForm = document.getElementById("additionalForm");
@@ -61,6 +52,7 @@ function onComboBoxChange() {
         additionalForm.classList.add("hidden");
     }
 }
+
 function restarStock() {
     let productoRestar = document.getElementById("inputProducto").value.trim();
     let talleRestar = document.getElementById("inputTalle").value.trim();
@@ -74,12 +66,7 @@ function restarStock() {
         return;
     }
 
-    let listsneakers;
-    if (localStorage.getItem("listsneakers") == null) {
-        listsneakers = [];
-    } else {
-        listsneakers = JSON.parse(localStorage.getItem("listsneakers"));
-    }
+    let listsneakers = JSON.parse(localStorage.getItem("listsneakers")) || [];
 
     let [marcaRestar, ...modeloRestar] = productoRestar.split(" ");
     modeloRestar = modeloRestar.join(" ");
@@ -89,6 +76,7 @@ function restarStock() {
     talleRestar = talleRestar.toLowerCase();
 
     let encontrado = false;
+    let precioTotalVenta = 0;
     for (let i = 0; i < listsneakers.length; i++) {
         let marcaActual = listsneakers[i].marca.toLowerCase();
         let modeloActual = listsneakers[i].modelo.toLowerCase();
@@ -106,21 +94,9 @@ function restarStock() {
                 listsneakers[i].dfacturacion = dfacturacion;
                 listsneakers[i].valorSeleccionado = valorSeleccionado;
 
-                // Si es transferencia, guardar datos adicionales
-                if (valorSeleccionado === "2") {
-                    let buyerName = document.getElementById("buyerName").value.trim();
-                    let buyerEmail = document.getElementById("buyerEmail").value.trim();
-                    let buyerPhone = document.getElementById("buyerPhone").value.trim();
-
-                    if (!buyerName || !buyerEmail || !buyerPhone) {
-                        alert("Por favor, complete todos los datos del comprador.");
-                        return;
-                    }
-
-                    listsneakers[i].buyerName = buyerName;
-                    listsneakers[i].buyerEmail = buyerEmail;
-                    listsneakers[i].buyerPhone = buyerPhone;
-                }
+                // Calcular el precio total de la venta
+                let precioProducto = parseFloat(listsneakers[i].precio);
+                precioTotalVenta = precioProducto * cantidadRestar;
 
                 encontrado = true;
                 break; // Producto encontrado y stock actualizado, salir del bucle
@@ -146,20 +122,16 @@ function restarStock() {
         cantidad: cantidadRestar,
         dfacturacion: dfacturacion,
         metodoPago: valorSeleccionado,
-        buyerName: "",
-        buyerEmail: "",
-        buyerPhone: ""
+        precioTotal: precioTotalVenta,  // Guardar el precio total de la venta
+        buyerName: document.getElementById("buyerName").value.trim(),
+        buyerEmail: document.getElementById("buyerEmail").value.trim(),
+        buyerPhone: document.getElementById("buyerPhone").value.trim()
     };
 
-    // Si el método de pago es transferencia, guardar los datos del comprador
-    if (valorSeleccionado === "1") {
-        let buyerName = document.getElementById("buyerName").value.trim();
-        let buyerEmail = document.getElementById("buyerEmail").value.trim();
-        let buyerPhone = document.getElementById("buyerPhone").value.trim();
-
-        venta.buyerName = buyerName;
-        venta.buyerEmail = buyerEmail;
-        venta.buyerPhone = buyerPhone;
+    // Validar que todos los datos del comprador estén completos
+    if (!venta.buyerName || !venta.buyerEmail || !venta.buyerPhone) {
+        alert("Por favor, complete todos los datos del comprador.");
+        return;
     }
 
     // Guardar la venta en el almacenamiento local

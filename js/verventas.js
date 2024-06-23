@@ -13,12 +13,18 @@ function mostrarComprobante() {
         // Modificar los valores en la tarjeta clonada
         nuevaTarjeta.querySelector(".card-title").textContent = venta.producto;
         nuevaTarjeta.querySelector(".card-subtitle").textContent = `Talle: ${venta.talle}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[0].textContent = `Cantidad: ${venta.cantidad}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[1].textContent = `Método de Pago: ${venta.metodoPago === '1' ? 'Contado' : 'Transferencia'}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[2].textContent = `Dirección de Facturación: ${venta.dfacturacion}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[3].textContent = `Nombre: ${venta.buyerName}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[4].textContent = `Correo Electrónico: ${venta.buyerEmail}`;
-        nuevaTarjeta.querySelectorAll(".card-text")[5].textContent = `Teléfono: ${venta.buyerPhone}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[0].innerHTML = `<strong>Cantidad:</strong> ${venta.cantidad}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[1].innerHTML = `<strong>Método de Pago:</strong> ${venta.metodoPago === '1' ? 'Contado' : 'Transferencia'}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[2].innerHTML = `<strong>Dirección de Facturación:</strong> ${venta.dfacturacion}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[3].innerHTML = `<strong>Nombre:</strong> ${venta.buyerName}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[4].innerHTML = `<strong>Correo Electrónico:</strong> ${venta.buyerEmail}`;
+        nuevaTarjeta.querySelectorAll(".card-text")[5].innerHTML = `<strong>Teléfono:</strong> ${venta.buyerPhone}`;
+
+        // Mostrar el valor de la venta
+        let precioTotalElement = document.createElement("p");
+        precioTotalElement.classList.add("card-text");
+        precioTotalElement.innerHTML = `<strong>Valor de la Venta:</strong> <span style="color: green;">${venta.precioTotal.toFixed(2)} $</span>`;
+        nuevaTarjeta.querySelector(".card-body").appendChild(precioTotalElement);
 
         // Obtener el contenedor de comprobantes y agregar la nueva tarjeta
         let comprobantesContainer = document.getElementById("comprobantesContainer");
